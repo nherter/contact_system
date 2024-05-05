@@ -1,6 +1,8 @@
+const dateipfad = 'src/contacts.json';
 const inputBoxName = document.getElementById("contact-name")
 const inputBoxAdress = document.getElementById("contact-adress")
 const listContainer = document.getElementById("contact-list")
+
 
 function addContact() {
     if (inputBoxName.value === '' && inputBoxAdress.value === '') {
@@ -25,6 +27,8 @@ function addContact() {
         span.innerHTML = "\u00d7";
 
         li.appendChild(span);
+
+        saveInJson(inputBoxName.value, inputBoxAdress.value)
     }
     inputBoxName.value = "";
     inputBoxAdress.value = "";
@@ -36,8 +40,11 @@ listContainer.addEventListener("click", function (e) {
     }
 })
 
-// somehow safe the data in a JSON file :: src/contacts.json
-
-// saveInJson() {
-//     let liElements = listContainer.querySelectorAll('li')
-// }
+function saveInJson() {
+    let liElements = {
+        Name: inputBoxName.value,
+        Adress: inputBoxAdress.value
+    }
+    let jsonStr = JSON.stringify(liElements)
+    console.log(jsonStr)
+};
